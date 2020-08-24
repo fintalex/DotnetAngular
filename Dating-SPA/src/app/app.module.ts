@@ -2,11 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// RECOMMENDED
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
+//import { BsDropdownModule } from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorInerceptorProvider } from './services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +25,11 @@ import { RegisterComponent } from './register/register.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
-  providers: [],
+  providers: [ErrorInerceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
